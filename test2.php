@@ -11,7 +11,7 @@
     <?php
     // print_r($_POST);
 
-    print "Welcome <b>" . $_POST['user'] . "</b><br/>\n";
+    print "Welcome <b>" . $_REQUEST['user'] . "</b><br/>\n";
     print "Your address is:<br/><b>" . $_POST['address'] . "</b><br/>\n";
 
     if (is_array($_POST['products'])) {
