@@ -1,10 +1,15 @@
 <?php
-    // session_start();
-    include("../includes/header.php");
-    include("../includes/config.php");
-  
-    $result = mysqli_query($conn, "SELECT * FROM artists");
-    
+// session_start();
+include("../includes/header.php");
+include("../includes/config.php");
+
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['message'] = "please Login to access the page";
+    header("Location: ../user/login.php");
+}
+
+$result = mysqli_query($conn, "SELECT * FROM artists");
+
 ?>
 <div class="container-fluid container-lg">
     <form action="store.php" method="POST">
@@ -16,10 +21,10 @@
             <label for="artist" class="form-label">Artist</label>
             <select class="form-select" id="artist" aria-label="Select Artist" name="artist">
                 <option selected>Select Artist</option>
-                <?php 
-                    while($row = mysqli_fetch_assoc($result)) {
-                       print "<option value={$row['artist_id']}>{$row['name']}</option>";
-                    }
+                <?php
+                while ($row = mysqli_fetch_assoc($result)) {
+                    print "<option value={$row['artist_id']}>{$row['name']}</option>";
+                }
                 ?>
             </select>
         </div>

@@ -2,12 +2,16 @@
 // session_start();
 // print_r($_SESSION);
 include('../includes/header.php');
-
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['message'] = "please Login to access the page";
+    header("Location: ../user/login.php");
+}
 ?>
+
 <body>
 
     <div class="container-fluid container-lg">
-        <form action="store.php" method="POST" enctype="multipart/form-data" >
+        <form action="store.php" method="POST" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="artistName">Artist name</label>
                 <input type="text" class="form-control" id="artistName" aria-describedby="emailHelp" placeholder="Enter name"

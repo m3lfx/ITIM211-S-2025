@@ -1,7 +1,12 @@
 <?php
-session_start();
+// session_start();
 include("../includes/header.php");
 include("../includes/config.php");
+
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['message'] = "please Login to access the page";
+    header("Location: ../user/login.php");
+}
 
 // $album = mysqli_query($conn, "SELECT * FROM albums WHERE album_id = {$_GET['id']} LIMIT 1");
 $album = mysqli_query($conn, "SELECT * FROM albums al INNER JOIN artists ar ON (al.artist_id = ar.artist_id) WHERE album_id = {$_GET['id']} LIMIT 1");

@@ -2,6 +2,11 @@
 session_start();
 include("../includes/config.php");
 
+if (!isset($_SESSION['user_id'])) {
+    $_SESSION['message'] = "please Login to access the page";
+    header("Location: ../user/login.php");
+}
+
 // if (!isset($_SESSION['user_id'])) {
 //     $_SESSION['message'] = "please Login to access the page";
 //     header("Location: ../user/login.php");
